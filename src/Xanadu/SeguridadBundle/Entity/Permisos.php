@@ -34,7 +34,15 @@ class Permisos
      * @ORM\Column(name="Descripcion", type="string", length=255)
      */
     private $descripcion;
+    
+    
+    public function __toString() {
+        return $this->nombre;
+    }
+    //Inicio funciones automáticas
 
+
+    
 
     /**
      * Get id

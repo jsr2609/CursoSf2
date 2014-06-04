@@ -44,26 +44,40 @@ class Usuarios
     
     /**
      *
-     * @ORM\OneToOne(targetEntity="Perfiles", mappedBy="usuario")
+     * @ORM\OneToOne(targetEntity="Perfiles", mappedBy="usuario", cascade={"all"})
      */
     private $perfil;
     
     /**
-     * @ORM\OneToMany(targetEntity="UsuariosHasGrupos", mappedBy="usuario", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Grupos") 
+     * @ORM\JoinTable(name="UsuariosHasGrupos",
+     *     joinColumns={@ORM\JoinColumn(name="UsuarioId", referencedColumnName="Id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="GrupoId", referencedColumnName="Id")}
+     * )
      */
     private $grupos;
     
     /**
-     * @ORM\OneToMany(targetEntity="UsuariosHasPermisos", mappedBy="usuario", cascade={"persist"})
-     */            
+     * 
+     * @ORM\ManyToMany(targetEntity="Permisos") 
+     * @ORM\JoinTable(name="UsuariosHasPermisos",
+     *     joinColumns={@ORM\JoinColumn(name="UsuarioId", referencedColumnName="Id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="PermisoId", referencedColumnName="Id")}
+     * )
+     */          
     private $permisos;
+    
+   
 
     //Inicio de funciones para seguridad
     
     
     //Fin de funciones para seguridad
     
+    
+    
     //Inicio de funciones automáticas
+    
     
     /**
      * Constructor
@@ -179,10 +193,10 @@ class Usuarios
     /**
      * Add grupos
      *
-     * @param \Xanadu\SeguridadBundle\Entity\UsuariosHasGrupos $grupos
+     * @param \Xanadu\SeguridadBundle\Entity\Grupos $grupos
      * @return Usuarios
      */
-    public function addGrupo(\Xanadu\SeguridadBundle\Entity\UsuariosHasGrupos $grupos)
+    public function addGrupo(\Xanadu\SeguridadBundle\Entity\Grupos $grupos)
     {
         $this->grupos[] = $grupos;
 
@@ -192,9 +206,9 @@ class Usuarios
     /**
      * Remove grupos
      *
-     * @param \Xanadu\SeguridadBundle\Entity\UsuariosHasGrupos $grupos
+     * @param \Xanadu\SeguridadBundle\Entity\Grupos $grupos
      */
-    public function removeGrupo(\Xanadu\SeguridadBundle\Entity\UsuariosHasGrupos $grupos)
+    public function removeGrupo(\Xanadu\SeguridadBundle\Entity\Grupos $grupos)
     {
         $this->grupos->removeElement($grupos);
     }
@@ -212,10 +226,10 @@ class Usuarios
     /**
      * Add permisos
      *
-     * @param \Xanadu\SeguridadBundle\Entity\UsuariosHasPermisos $permisos
+     * @param \Xanadu\SeguridadBundle\Entity\Permisos $permisos
      * @return Usuarios
      */
-    public function addPermiso(\Xanadu\SeguridadBundle\Entity\UsuariosHasPermisos $permisos)
+    public function addPermiso(\Xanadu\SeguridadBundle\Entity\Permisos $permisos)
     {
         $this->permisos[] = $permisos;
 
@@ -225,9 +239,9 @@ class Usuarios
     /**
      * Remove permisos
      *
-     * @param \Xanadu\SeguridadBundle\Entity\UsuariosHasPermisos $permisos
+     * @param \Xanadu\SeguridadBundle\Entity\Permisos $permisos
      */
-    public function removePermiso(\Xanadu\SeguridadBundle\Entity\UsuariosHasPermisos $permisos)
+    public function removePermiso(\Xanadu\SeguridadBundle\Entity\Permisos $permisos)
     {
         $this->permisos->removeElement($permisos);
     }

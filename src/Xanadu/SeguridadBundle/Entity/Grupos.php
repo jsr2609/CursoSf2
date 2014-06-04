@@ -36,9 +36,16 @@ class Grupos
     private $descripcion;
 
     /**
-     * @ORM\OneToMany(targetEntity="GruposHasPermisos", mappedBy="grupo", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Permisos") 
+     * @ORM\JoinTable(name="GruposHasPermisos",
+     *     joinColumns={@ORM\JoinColumn(name="GrupoId", referencedColumnName="Id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="PermisosId", referencedColumnName="Id")}
+     * )
      */
     private $permisos;
+    
+    
+    //Inicio de funciones automáticas
     
     /**
      * Constructor
@@ -107,10 +114,10 @@ class Grupos
     /**
      * Add permisos
      *
-     * @param \Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos
+     * @param \Xanadu\SeguridadBundle\Entity\Permisos $permisos
      * @return Grupos
      */
-    public function addPermiso(\Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos)
+    public function addPermiso(\Xanadu\SeguridadBundle\Entity\Permisos $permisos)
     {
         $this->permisos[] = $permisos;
 
@@ -120,9 +127,9 @@ class Grupos
     /**
      * Remove permisos
      *
-     * @param \Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos
+     * @param \Xanadu\SeguridadBundle\Entity\Permisos $permisos
      */
-    public function removePermiso(\Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos)
+    public function removePermiso(\Xanadu\SeguridadBundle\Entity\Permisos $permisos)
     {
         $this->permisos->removeElement($permisos);
     }
