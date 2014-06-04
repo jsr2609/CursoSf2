@@ -5,9 +5,8 @@ namespace Xanadu\SeguridadBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Xanadu\SeguridadBundle\Form\PerfilesType;
 
-class UsuariosType extends AbstractType
+class PerfilesType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -16,12 +15,9 @@ class UsuariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombreUsuario')
-            ->add('password')
-            ->add('email')
-            ->add('perfil', new PerfilesType())
-            ->add('grupos')
-            ->add('permisos')
+            ->add('telefonoParticular')
+            ->add('domicilio')
+            
         ;
     }
     
@@ -31,7 +27,7 @@ class UsuariosType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Xanadu\SeguridadBundle\Entity\Usuarios'
+            'data_class' => 'Xanadu\SeguridadBundle\Entity\Perfiles'
         ));
     }
 
@@ -40,6 +36,6 @@ class UsuariosType extends AbstractType
      */
     public function getName()
     {
-        return 'xanadu_seguridadbundle_usuarios';
+        return 'xanadu_seguridadbundle_perfiles';
     }
 }
