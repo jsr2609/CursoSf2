@@ -17,7 +17,15 @@ class UsuariosType extends AbstractType
     {
         $builder
             ->add('nombreUsuario')
-            ->add('password')
+            ->add('password', 'repeated', array(
+                'type' => 'password',
+                'invalid_message' => 'Las contraseñas no son iguales.',
+                
+                'required' => true,
+                'first_options'  => array('label' => 'Password'),
+                'second_options' => array('label' => 'Confirma Password'),
+                'required' => false
+            ))
             ->add('email')
             ->add('perfil', new PerfilesType())
             ->add('grupos')
