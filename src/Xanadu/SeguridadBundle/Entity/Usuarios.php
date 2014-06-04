@@ -3,6 +3,7 @@
 namespace Xanadu\SeguridadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Usuarios
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Usuarios
+class Usuarios implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -70,6 +71,54 @@ class Usuarios
    
 
     //Inicio de funciones para seguridad
+    
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->nombreUsuario,
+            $this->password,
+        ));
+    }
+
+    public function unserialize($serialized) {
+        list (
+            $this->id,
+            $this->nombreUsuario,
+            $this->password,
+        ) = unserialize($serialized);
+    }   
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getRoles() {
+        
+    }
+
+    public function getSalt() {
+        
+    }
+
+    public function getUsername() {
+        
+    }
+
+    public function isAccountNonExpired() {
+        return true;
+    }
+
+    public function isAccountNonLocked() {
+        return true;
+    }
+
+    public function isCredentialsNonExpired() {
+        return true;
+    }
+
+    public function isEnabled() {
+        return true;
+    }
     
     
     //Fin de funciones para seguridad
@@ -255,4 +304,6 @@ class Usuarios
     {
         return $this->permisos;
     }
+
+    
 }
