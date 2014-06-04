@@ -68,6 +68,18 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      */          
     private $permisos;
     
+    /**
+     *
+     * @ORM\Column(name="Salt", type="string", length=255)
+     */
+    private $salt;
+    
+    /**
+     *
+     * @ORM\Column(name="Activo", type="boolean", length=255)
+     */
+    private $activo = true;
+    
    
 
     //Inicio de funciones para seguridad
@@ -97,7 +109,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     }
 
     public function getSalt() {
-        
+        return $this->salt;
     }
 
     public function getUsername() {
@@ -117,7 +129,11 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     }
 
     public function isEnabled() {
-        return true;
+        return $this->activo;
+    }
+    
+    public function getPassword() {
+        return $this->password;
     }
     
     
@@ -127,6 +143,9 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     
     //Inicio de funciones automáticas
     
+    
+    
+
     
     /**
      * Constructor
@@ -184,16 +203,6 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -214,6 +223,42 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return Usuarios
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Set activo
+     *
+     * @param boolean $activo
+     * @return Usuarios
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean 
+     */
+    public function getActivo()
+    {
+        return $this->activo;
     }
 
     /**
@@ -304,6 +349,4 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         return $this->permisos;
     }
-
-    
 }
