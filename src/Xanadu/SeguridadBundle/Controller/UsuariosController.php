@@ -41,6 +41,8 @@ class UsuariosController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //Se obtiene el usuario para asignarselo al perfil
+            $form->getData()->getPerfil()->setUsuario($form->getData());
             $em->persist($entity);
             $em->flush();
 
