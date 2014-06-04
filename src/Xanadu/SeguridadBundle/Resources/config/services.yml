@@ -1,0 +1,7 @@
+parameters:
+#    xanadu_seguridad.example.class: Xanadu\SeguridadBundle\Example
+
+services:
+#    xanadu_seguridad.example:
+#        class: %xanadu_seguridad.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
