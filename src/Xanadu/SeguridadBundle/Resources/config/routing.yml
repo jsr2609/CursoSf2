@@ -1,0 +1,11 @@
+xanadu_seguridad_seguridad_permisos:
+    resource: "@XanaduSeguridadBundle/Resources/config/routing/permisos.yml"
+    prefix:   /seguridad/permisos
+
+XanaduSeguridadBundle_seguridad_grupos:
+    resource: "@XanaduSeguridadBundle/Resources/config/routing/grupos.yml"
+    prefix:   /seguridad/grupos
+
+XanaduSeguridadBundle_seguridad_usuarios:
+    resource: "@XanaduSeguridadBundle/Resources/config/routing/usuarios.yml"
+    prefix:   /seguridad/usuarios

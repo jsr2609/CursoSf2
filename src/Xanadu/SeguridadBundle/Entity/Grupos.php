@@ -44,6 +44,9 @@ class Grupos
      */
     private $permisos;
     
+    public function __toString() {
+        return $this->nombre;
+    }
     
     //Inicio de funciones automáticas
     

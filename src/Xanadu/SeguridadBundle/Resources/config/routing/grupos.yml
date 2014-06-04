@@ -1,0 +1,30 @@
+seguridad_grupos:
+    pattern:  /
+    defaults: { _controller: "XanaduSeguridadBundle:Grupos:index" }
+
+seguridad_grupos_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "XanaduSeguridadBundle:Grupos:show" }
+
+seguridad_grupos_new:
+    pattern:  /new
+    defaults: { _controller: "XanaduSeguridadBundle:Grupos:new" }
+
+seguridad_grupos_create:
+    pattern:  /create
+    defaults: { _controller: "XanaduSeguridadBundle:Grupos:create" }
+    requirements: { _method: post }
+
+seguridad_grupos_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "XanaduSeguridadBundle:Grupos:edit" }
+
+seguridad_grupos_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "XanaduSeguridadBundle:Grupos:update" }
+    requirements: { _method: post|put }
+
+seguridad_grupos_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "XanaduSeguridadBundle:Grupos:delete" }
+    requirements: { _method: post|delete }

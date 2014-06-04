@@ -1,0 +1,30 @@
+seguridad_usuarios:
+    pattern:  /
+    defaults: { _controller: "XanaduSeguridadBundle:Usuarios:index" }
+
+seguridad_usuarios_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "XanaduSeguridadBundle:Usuarios:show" }
+
+seguridad_usuarios_new:
+    pattern:  /new
+    defaults: { _controller: "XanaduSeguridadBundle:Usuarios:new" }
+
+seguridad_usuarios_create:
+    pattern:  /create
+    defaults: { _controller: "XanaduSeguridadBundle:Usuarios:create" }
+    requirements: { _method: post }
+
+seguridad_usuarios_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "XanaduSeguridadBundle:Usuarios:edit" }
+
+seguridad_usuarios_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "XanaduSeguridadBundle:Usuarios:update" }
+    requirements: { _method: post|put }
+
+seguridad_usuarios_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "XanaduSeguridadBundle:Usuarios:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,30 @@
+seguridad_permisos:
+    pattern:  /
+    defaults: { _controller: "XanaduSeguridadBundle:Permisos:index" }
+
+seguridad_permisos_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "XanaduSeguridadBundle:Permisos:show" }
+
+seguridad_permisos_new:
+    pattern:  /new
+    defaults: { _controller: "XanaduSeguridadBundle:Permisos:new" }
+
+seguridad_permisos_create:
+    pattern:  /create
+    defaults: { _controller: "XanaduSeguridadBundle:Permisos:create" }
+    requirements: { _method: post }
+
+seguridad_permisos_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "XanaduSeguridadBundle:Permisos:edit" }
+
+seguridad_permisos_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "XanaduSeguridadBundle:Permisos:update" }
+    requirements: { _method: post|put }
+
+seguridad_permisos_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "XanaduSeguridadBundle:Permisos:delete" }
+    requirements: { _method: post|delete }
