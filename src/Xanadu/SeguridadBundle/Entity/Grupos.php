@@ -35,6 +35,18 @@ class Grupos
      */
     private $descripcion;
 
+    /**
+     * @ORM\OneToMany(targetEntity="GruposHasPermisos", mappedBy="grupo", cascade={"persist"})
+     */
+    private $permisos;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->permisos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,5 +102,38 @@ class Grupos
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    /**
+     * Add permisos
+     *
+     * @param \Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos
+     * @return Grupos
+     */
+    public function addPermiso(\Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos)
+    {
+        $this->permisos[] = $permisos;
+
+        return $this;
+    }
+
+    /**
+     * Remove permisos
+     *
+     * @param \Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos
+     */
+    public function removePermiso(\Xanadu\SeguridadBundle\Entity\GruposHasPermisos $permisos)
+    {
+        $this->permisos->removeElement($permisos);
+    }
+
+    /**
+     * Get permisos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPermisos()
+    {
+        return $this->permisos;
     }
 }

@@ -49,12 +49,12 @@ class Usuarios
     private $perfil;
     
     /**
-     * @ORM\OneToMany(targetEntity="UsuariosHasGrupos", mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity="UsuariosHasGrupos", mappedBy="usuario", cascade={"persist"})
      */
     private $grupos;
     
     /**
-     * @ORM\OneToMany(targetEntity="UsuariosHasPermisos", mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity="UsuariosHasPermisos", mappedBy="usuario", cascade={"persist"})
      */            
     private $permisos;
 

@@ -15,26 +15,30 @@ class UsuariosHasGrupos
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="Id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="usuario", type="integer")
+     * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="grupos")
+     * @ORM\JoinColumn(name="UsuarioId", referencedColumnName="Id", unique=false,
+     *   nullable=false, onDelete="RESTRICT"
+     * )
      */
     private $usuario;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="grupo", type="integer")
+     * @ORM\ManyToOne(targetEntity="Grupos")
+     * @ORM\JoinColumn(name="GrupoId", referencedColumnName="Id", unique=false,
+     *   nullable=false, onDelete="RESTRICT"
+     * )
      */
     private $grupo;
-
+    
+    //Inicio de funciones automáticas
+    
 
     /**
      * Get id
@@ -49,10 +53,10 @@ class UsuariosHasGrupos
     /**
      * Set usuario
      *
-     * @param integer $usuario
+     * @param \Xanadu\SeguridadBundle\Entity\Usuarios $usuario
      * @return UsuariosHasGrupos
      */
-    public function setUsuario($usuario)
+    public function setUsuario(\Xanadu\SeguridadBundle\Entity\Usuarios $usuario)
     {
         $this->usuario = $usuario;
 
@@ -62,7 +66,7 @@ class UsuariosHasGrupos
     /**
      * Get usuario
      *
-     * @return integer 
+     * @return \Xanadu\SeguridadBundle\Entity\Usuarios 
      */
     public function getUsuario()
     {
@@ -72,10 +76,10 @@ class UsuariosHasGrupos
     /**
      * Set grupo
      *
-     * @param integer $grupo
+     * @param \Xanadu\SeguridadBundle\Entity\Grupos $grupo
      * @return UsuariosHasGrupos
      */
-    public function setGrupo($grupo)
+    public function setGrupo(\Xanadu\SeguridadBundle\Entity\Grupos $grupo)
     {
         $this->grupo = $grupo;
 
@@ -85,7 +89,7 @@ class UsuariosHasGrupos
     /**
      * Get grupo
      *
-     * @return integer 
+     * @return \Xanadu\SeguridadBundle\Entity\Grupos 
      */
     public function getGrupo()
     {

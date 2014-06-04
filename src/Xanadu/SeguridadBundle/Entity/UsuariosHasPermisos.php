@@ -15,26 +15,30 @@ class UsuariosHasPermisos
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="Id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="usuario", type="integer")
+     * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="permisos")
+     * @ORM\JoinColumn(name="UsuarioId", referencedColumnName="Id", unique=false,
+     *   nullable=false, onDelete="RESTRICT"
+     * )
      */
     private $usuario;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="permiso", type="integer")
+     * @ORM\ManyToOne(targetEntity="Permisos")
+     * @ORM\JoinColumn(name="PermisoId", referencedColumnName="Id", unique=false,
+     *   nullable=false, onDelete="RESTRICT"
+     * )
      */
     private $permiso;
 
+    //Inicio de funciones automáticas
+    
 
     /**
      * Get id
@@ -49,10 +53,10 @@ class UsuariosHasPermisos
     /**
      * Set usuario
      *
-     * @param integer $usuario
+     * @param \Xanadu\SeguridadBundle\Entity\Usuarios $usuario
      * @return UsuariosHasPermisos
      */
-    public function setUsuario($usuario)
+    public function setUsuario(\Xanadu\SeguridadBundle\Entity\Usuarios $usuario)
     {
         $this->usuario = $usuario;
 
@@ -62,7 +66,7 @@ class UsuariosHasPermisos
     /**
      * Get usuario
      *
-     * @return integer 
+     * @return \Xanadu\SeguridadBundle\Entity\Usuarios 
      */
     public function getUsuario()
     {
@@ -72,10 +76,10 @@ class UsuariosHasPermisos
     /**
      * Set permiso
      *
-     * @param integer $permiso
+     * @param \Xanadu\SeguridadBundle\Entity\Permisos $permiso
      * @return UsuariosHasPermisos
      */
-    public function setPermiso($permiso)
+    public function setPermiso(\Xanadu\SeguridadBundle\Entity\Permisos $permiso)
     {
         $this->permiso = $permiso;
 
@@ -85,7 +89,7 @@ class UsuariosHasPermisos
     /**
      * Get permiso
      *
-     * @return integer 
+     * @return \Xanadu\SeguridadBundle\Entity\Permisos 
      */
     public function getPermiso()
     {
