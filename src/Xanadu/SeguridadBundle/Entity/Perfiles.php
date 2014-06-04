@@ -15,16 +15,16 @@ class Perfiles
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="Id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var integer
      *
-     * @ORM\Column(name="usuario", type="integer")
+     * @ORM\OneToOne(targetEntity="Usuarios", inversedBy="perfil")
+     * @ORM\JoinColumn(name="UsuarioId", referencedColumnName="Id")
      */
     private $usuario;
 
@@ -42,6 +42,8 @@ class Perfiles
      */
     private $domicilio;
 
+    //Inicio de funciones automáticas
+    
 
     /**
      * Get id
@@ -51,29 +53,6 @@ class Perfiles
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set usuario
-     *
-     * @param integer $usuario
-     * @return Perfiles
-     */
-    public function setUsuario($usuario)
-    {
-        $this->usuario = $usuario;
-
-        return $this;
-    }
-
-    /**
-     * Get usuario
-     *
-     * @return integer 
-     */
-    public function getUsuario()
-    {
-        return $this->usuario;
     }
 
     /**
@@ -120,5 +99,28 @@ class Perfiles
     public function getDomicilio()
     {
         return $this->domicilio;
+    }
+
+    /**
+     * Set usuario
+     *
+     * @param \Xanadu\SeguridadBundle\Entity\Usuarios $usuario
+     * @return Perfiles
+     */
+    public function setUsuario(\Xanadu\SeguridadBundle\Entity\Usuarios $usuario = null)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \Xanadu\SeguridadBundle\Entity\Usuarios 
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 }
