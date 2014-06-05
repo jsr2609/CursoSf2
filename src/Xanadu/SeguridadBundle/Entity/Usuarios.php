@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * Usuarios
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Xanadu\SeguridadBundle\Repository\UsuariosRepository")
  */
 class Usuarios implements AdvancedUserInterface, \Serializable
 {

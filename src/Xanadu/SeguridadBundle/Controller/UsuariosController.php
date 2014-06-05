@@ -44,8 +44,7 @@ class UsuariosController extends Controller
             //Se asigna el usuario al perfil
             $entity->getPerfil()->setUsuario($entity);
             //Cifrando la contraseña
-            $password = $this->cifrarPassword($entity, $entity->getPassword());
-            $entity->setPassword($password);
+            $this->cifrarPassword($entity);
             $em->persist($entity);
             $em->flush();
 
@@ -58,12 +57,19 @@ class UsuariosController extends Controller
         ));
     }
     
-    private function cifrarPassword($usuario, $password)
+    private function cifrarPassword($usuario, $passwordAnterior = null)
     {
-        $factory = $this->get('security.encoder_factory');
-        $encoder = $factory->getEncoder($usuario);
-        $password = $encoder->encodePassword($password, $usuario->getSalt());
-        return $password;
+        $password = $usuario->getPassword();
+        if(!empty($password)) {
+            $factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($usuario);
+            $password = $encoder->encodePassword($password, $usuario->getSalt());
+            $usuario->setPassword($password);
+        } else {
+            $em = $this->getDoctrine()->getManager();
+            $passwordActual = $em->getRepository("XanaduSeguridadBundle:Usuarios")->recuperarPassword($usuario);
+            $usuario->setPassword($passwordActual);
+        }
     }
 
     /**
@@ -182,6 +188,7 @@ class UsuariosController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $this->cifrarPassword($entity, $entity->getPassword());
             $em->flush();
 
             return $this->redirect($this->generateUrl('seguridad_usuarios_edit', array('id' => $id)));
