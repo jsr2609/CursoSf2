@@ -23,10 +23,13 @@ class UsuariosRepository extends EntityRepository implements UserProviderInterfa
     {
         $q = $this
             ->createQueryBuilder('u')
-            ->where('u.nombreUsuario = :username OR u.email = :email or u.id = :id')
-            ->setParameter('username', $username)
-            ->setParameter('email', $username)
-            ->setParameter('id', $username)
+            ->select('u', 'g', 'p', 'p1', 'p2')
+            ->where('u.nombreUsuario = :valor OR u.email = :valor or u.id = :valor')
+            ->setParameter('valor', $username)
+            ->leftJoin('u.grupos', 'g')
+            ->leftJoin('g.permisos', 'p')
+            ->leftJoin('u.perfil', 'p1')
+            ->leftJoin('u.permisos', 'p2')             
             ->getQuery();
 
         try {
