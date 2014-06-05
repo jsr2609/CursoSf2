@@ -1,3 +1,13 @@
+logout:
+    path: /logout
+    
+login:
+    path:   /login
+    defaults:  { _controller: XanaduSeguridadBundle:Seguridad:login }
+    
+login_check:
+    path:   /login_check
+
 xanadu_seguridad_seguridad_permisos:
     resource: "@XanaduSeguridadBundle/Resources/config/routing/permisos.yml"
     prefix:   /seguridad/permisos
