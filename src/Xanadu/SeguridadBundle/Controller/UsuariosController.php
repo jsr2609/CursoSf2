@@ -21,6 +21,9 @@ class UsuariosController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->getUser();
+        
+        
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('XanaduSeguridadBundle:Usuarios')->findAll();

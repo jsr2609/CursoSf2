@@ -84,19 +84,16 @@ class Usuarios implements AdvancedUserInterface, \Serializable
 
     //Inicio de funciones para seguridad
     
+    
     public function serialize() {
         return serialize(array(
-            $this->id,
-            $this->nombreUsuario,
-            $this->password,
+            $this->id
         ));
     }
 
     public function unserialize($serialized) {
         list (
-            $this->id,
-            $this->nombreUsuario,
-            $this->password,
+            $this->id
         ) = unserialize($serialized);
     }   
 
@@ -113,7 +110,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     }
 
     public function getUsername() {
-        
+        return $this->nombreUsuario;
     }
 
     public function isAccountNonExpired() {
@@ -135,17 +132,11 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function getPassword() {
         return $this->password;
     }
-    
-    
     //Fin de funciones para seguridad
     
     
     
     //Inicio de funciones automáticas
-    
-    
-    
-
     
     /**
      * Constructor
@@ -350,4 +341,6 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         return $this->permisos;
     }
+
+    
 }
