@@ -41,8 +41,11 @@ class UsuariosController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            //Se obtiene el usuario para asignarselo al perfil
-            $form->getData()->getPerfil()->setUsuario($form->getData());
+            //Se asigna el usuario al perfil
+            $entity->getPerfil()->setUsuario($entity);
+            //Cifrando la contraseña
+            $password = $this->cifrarPassword($entity, $entity->getPassword());
+            $entity->setPassword($password);
             $em->persist($entity);
             $em->flush();
 
@@ -53,6 +56,14 @@ class UsuariosController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
+    }
+    
+    private function cifrarPassword($usuario, $password)
+    {
+        $factory = $this->get('security.encoder_factory');
+        $encoder = $factory->getEncoder($usuario);
+        $password = $encoder->encodePassword($password, $usuario->getSalt());
+        return $password;
     }
 
     /**

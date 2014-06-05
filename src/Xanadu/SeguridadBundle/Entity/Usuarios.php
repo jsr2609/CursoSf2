@@ -154,6 +154,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         $this->grupos = new \Doctrine\Common\Collections\ArrayCollection();
         $this->permisos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->salt = md5(uniqid(null, true));
     }
 
     /**
