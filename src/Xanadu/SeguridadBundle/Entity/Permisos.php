@@ -3,6 +3,7 @@
 namespace Xanadu\SeguridadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
  * Permisos
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Permisos
+class Permisos implements RoleInterface
 {
     /**
      * @var integer
@@ -39,10 +40,12 @@ class Permisos
     public function __toString() {
         return $this->nombre;
     }
-    //Inicio funciones automáticas
-
-
     
+    //Funciones de la intergaz RoleInterfaz
+    public function getRole() {
+       return $this->nombre; 
+    }
+    //Inicio funciones automáticas
 
     /**
      * Get id
@@ -99,4 +102,6 @@ class Permisos
     {
         return $this->descripcion;
     }
+
+    
 }

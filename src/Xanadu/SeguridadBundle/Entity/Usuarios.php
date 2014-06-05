@@ -4,6 +4,7 @@ namespace Xanadu\SeguridadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Xanadu\SeguridadBundle\Entity\Permisos;
 
 /**
  * Usuarios
@@ -102,7 +103,19 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     }
 
     public function getRoles() {
-        return array("ROLE_USER");
+        $rolUser = new Permisos();
+        $rolUser->setNombre("ROLE_USER");
+        $roles = array($rolUser);
+        foreach($this->grupos as $group)
+        {
+            $roles = array_merge($roles, $group->getPermisos()->toArray());
+        }
+        
+        $roles = array_merge($roles, $this->permisos->toArray());
+        $roles = array_unique($roles);
+        
+        return $roles;
+        
     }
 
     public function getSalt() {
